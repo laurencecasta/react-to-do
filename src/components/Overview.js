@@ -16,7 +16,7 @@ const Overview = (props) => {
           handleEdit = {handleEdit}
           handleEditChange = {handleEditChange}
         />
-        <button className="btn btn-secondary" onClick={(event) => handleEdit(event, index)}>{task.isEdit ? 'SUBMIT' : 'EDIT'}</button>
+        <button className={task.isEdit ? "btn btn-primary" : "btn btn-secondary"} onClick={(event) => handleEdit(event, index)}>{task.isEdit ? 'SUBMIT' : 'EDIT'}</button>
         </div>
         <hr/>
       </div>
