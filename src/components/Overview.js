@@ -8,7 +8,7 @@ const Overview = (props) => {
   let renderedTasks = tasks.map((task, index) => {
     return(
       <div>
-        <div className="Row" key={index}>
+        <div className="Row" key={task.id}>
         <Item
           task = {task}
           index = {index}
