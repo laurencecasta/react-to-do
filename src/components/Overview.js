@@ -16,7 +16,8 @@ const Overview = (props) => {
           handleEdit = {handleEdit}
           handleEditChange = {handleEditChange}
         />
-        <button className={task.isEdit ? "btn btn-primary" : "btn btn-secondary"} onClick={(event) => handleEdit(event, index)}>{task.isEdit ? 'SUBMIT' : 'EDIT'}</button>
+        <div className={task.isEdit ? "btn btn-primary" : "btn btn-secondary"} onClick={(event) => handleEdit(event, index)}>{task.isEdit ? 'SUBMIT' : 'EDIT'}</div>
+        {/*use div instead of button element when not wanting form submission on click*/}
         </div>
         <hr/>
       </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import uniqid from 'uniqid'
 
 import Overview from './components/Overview'
 
@@ -10,19 +11,22 @@ class App extends React.Component {
     this.state = {
       tasks: [
         {
-          name: 'task1',
+          name: 'task1', // use id property
           isEdit: false,
-          editInput: ''
+          editInput: '',
+          id: uniqid(),
         },
         {
           name: 'task2',
           isEdit: false,
-          editInput: ''
+          editInput: '',
+          id: uniqid(),
         },
         {
           name: 'task3',
           isEdit: false,
-          editInput: ''
+          editInput: '',
+          id: uniqid(),
         },
       ],
       taskInput: '',
@@ -35,7 +39,7 @@ class App extends React.Component {
     this.setState({ [name]: value });
   }
 
-  handleEditChange(event, id) {
+  handleEditChange = (event, id) => { // use id and map to update the state
     const { name, value } = event.target;
     this.setState(prevState => {
       return (
@@ -55,7 +59,16 @@ class App extends React.Component {
     this.setState(prevState => {
       return(
         {
-          tasks: prevState.tasks.concat([{name: prevState.taskInput, isEdit: false, editInput: ''}]),
+          tasks: prevState.tasks.concat(
+            [
+              {
+                name: prevState.taskInput,
+                isEdit: false,
+                editInput: '',
+                id: uniqid(),
+              }
+            ]
+            ),
           taskInput: '',
         }
       )
@@ -64,9 +77,9 @@ class App extends React.Component {
 
   handleDelete = (id) => {
     this.setState(prevState => {
-      return(
+      return (
         {
-          tasks: [...prevState.tasks.slice(0,id), ...prevState.tasks.slice(id + 1)],
+          tasks: prevState.tasks.filter(task => task.id !== id)
         }
       )
     })

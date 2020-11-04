@@ -29,7 +29,7 @@ const Entry = (props) => {
           key={uniqid()}
           className="fa fa-minus-circle"
           aria-hidden="true"
-          onClick={() => handleDelete(index)}
+          onClick={() => handleDelete(task.id)}
         >
         </i>
       </li>
