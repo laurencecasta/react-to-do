@@ -44,11 +44,18 @@ class App extends React.Component {
     this.setState(prevState => {
       return (
         {
-          tasks: [
-            ...prevState.tasks.slice(0, id),
-            {name: value, isEdit: prevState.tasks[id].isEdit, [name]: value},
-            ...prevState.tasks.slice(id + 1),
-          ]
+          tasks: prevState.tasks.map(task => {
+            if (task.id === id) {
+              return {
+                name: value,
+                isEdit: task.isEdit,
+                [name]: value,
+                id: task.id,
+              }
+            } else {
+              return task;
+            }
+          })
         }
       )
     })
@@ -90,15 +97,23 @@ class App extends React.Component {
     this.setState(prevState => {
       return (
         {
-          tasks: [
-            ...prevState.tasks.slice(0, id),
-            {name: prevState.tasks[id].name, isEdit: !prevState.tasks[id].isEdit, editInput: ''},
-            ...prevState.tasks.slice(id + 1),
-          ]
+          tasks: prevState.tasks.map(task => {
+            if (task.id === id) {
+              return (
+                {
+                  name: task.name,
+                  isEdit: !task.isEdit,
+                  editInput: '',
+                  id: task.id,
+                }
+              )
+            } else {
+              return task;
+            }
+          })
         }
       )
     })
-    console.log(this.state.tasks[id].isEdit);
   }
   
   render() {

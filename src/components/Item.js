@@ -5,8 +5,8 @@ const Entry = (props) => {
   const {task, index, handleDelete, handleEdit, handleEditChange} = props;
   if (task.isEdit) {
     return (
-      <li key={index}>
-        <form onSubmit={(event) => handleEdit(event, index)}>
+      <li key={task.id}>
+        <form onSubmit={(event) => handleEdit(event, task.id)}>
           <div>
           <input
               type="text"
@@ -15,7 +15,7 @@ const Entry = (props) => {
               name="editInput"
               placeholder='Edit Task'
               value={task.name}
-              onChange={(event) => handleEditChange(event, index)}
+              onChange={(event) => handleEditChange(event, task.id)}
             />
           </div>
         </form>
@@ -23,7 +23,7 @@ const Entry = (props) => {
     )
   } else {
     return (
-      <li key={uniqid()}>
+      <li key={task.id}>
         <span>{index + 1}. {task.name}</span>
         <i
           key={uniqid()}
